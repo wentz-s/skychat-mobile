@@ -49,15 +49,16 @@ angular.module('starter.controllers', [])
         });
       }
     });
-    setTimeout(function(){  $rootScope.socket.emit("message",{"message":'/join 0'});}, 500);
-    setTimeout(function(){  $rootScope.socket.emit("message",{"message":'TEST LOL'});}, 1000);
+
+    setTimeout(function() {$rootScope.socket.emit("log", $scope.logData); setTimeout(function(){$rootScope.socket.emit("message",{"message":'/join 0'});}, 500);}, 500);
+
   };
 })
 
 .controller('RoomslistsCtrl', function($scope, $rootScope) {
   $rootScope.socket = io.connect('http://redsky.fr:8056');
   //$rootScope.socket.emit("message",{"message":'/join 0'});
-  //$rootScope.socket.on('message', function(data) {
+  $rootScope.socket.on('message', function(data) {
     console.log(data);
   });
   $scope.rooms = [

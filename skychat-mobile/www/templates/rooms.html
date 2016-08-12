@@ -1,9 +1,21 @@
-<ion-view view-title="Liste des rooms">
+<ion-view view-title="SkyChat">
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="room in rooms" href="#/app/rooms/{{room.id}}">
         {{room.title}}
       </ion-item>
     </ion-list>
+    <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
+              <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+                  <label class="item-input-wrapper">
+                      <textarea ng-model="input.message" value="" placeholder="Send {{toUser.username}} a message..." required minlength="1" maxlength="1500" msd-elastic></textarea>
+                  </label>
+                  <div class="footer-btn-wrap">
+                    <button class="button button-icon icon ion-android-send footer-btn" type="submit"
+                        ng-disabled="!input.message || input.message === ''">
+                    </button>
+                  </div>
+              </ion-footer-bar>
+    </form>
   </ion-content>
 </ion-view>
